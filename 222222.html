@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İxtisasinfo | Azərbaycanın Ən Böyük Təhsil Platforması</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            overflow: hidden;
+            color: white;
+        }
+
+        #bg-image {
+            position: absolute;
+            top: -5%; left: -5%;
+            width: 110%; height: 110%;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            transition: transform 0.1s ease-out;
+        }
+
+        .glass-card {
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            padding: 60px 50px;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            text-align: center;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .logo { font-size: 26px; font-weight: 800; color: #3182ce; margin-bottom: 25px; letter-spacing: -0.5px; }
+        h1 { font-size: 3.2rem; margin-bottom: 25px; line-height: 1.1; font-weight: 700; }
+        .status-text { color: #3182ce; font-weight: 600; letter-spacing: 5px; margin-bottom: 35px; font-size: 1.1rem; }
+        p { color: #ddd; margin-bottom: 30px; font-size: 1rem; line-height: 1.5; }
+
+        .input-container {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 6px 6px 6px 25px;
+            max-width: 500px;
+            margin: 0 auto 5px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .input-container.error { border: 1px solid #ff4d4d !important; box-shadow: 0 0 10px rgba(255, 77, 77, 0.2); }
+        #error-text { color: #ff4d4d; font-size: 13px; margin-bottom: 25px; display: none; text-align: left; max-width: 480px; margin-left: auto; margin-right: auto; padding-left: 15px; }
+
+        input { background: transparent; border: none; color: white; flex: 1; outline: none; font-size: 16px; }
+        .btn { background: #2b6cb0; color: white; border: none; padding: 14px 30px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: background 0.3s ease; }
+        .btn:hover { background: #3182ce; }
+
+        /* Uğur Kartı Animasiyası */
+        #success-card {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .robot-icon { width: 80px; margin-bottom: 10px; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        .did-you-know {
+            background: rgba(49, 130, 206, 0.15);
+            border-left: 3px solid #3182ce;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            text-align: left;
+            max-width: 550px;
+            margin: 20px auto 0;
+        }
+        .did-you-know b { color: #3182ce; display: block; margin-bottom: 6px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        @media (max-width: 768px) { h1 { font-size: 2.2rem; } .glass-card { padding: 40px 25px; } }
+    </style>
+</head>
+<body>
+
+    <div id="bg-image"></div>
+
+    <div class="glass-card">
+        <div class="logo">ixtisasinfo</div>
+        <h1>Azərbaycanın ən böyük təhsil platforması</h1>
+        <div class="status-text">TEZLİKLƏ . . .</div>
+        
+        <div id="main-content">
+            <p>Ən son yeniliklərdən ilk xəbərdar olanlardan biri olmaq üçün email ünvanını yaz.</p>
+            <div class="input-container">
+                <input type="email" id="user_email" placeholder="Email ünvanınızı daxil edin" required minlength="8">
+                <button class="btn" onclick="sendMail()">Xəbər ver</button>
+            </div>
+            <div id="error-text">⚠️ Zəhmət olmasa düzgün bir email ünvanı daxil edin!</div>
+        </div>
+
+        <div id="success-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" class="robot-icon" alt="Robot">
+            <div style="background: rgba(72, 187, 120, 0.15); border: 1px solid #48bb78; padding: 25px; border-radius: 25px;">
+                <h3 style="color: #48bb78; margin-bottom: 5px;">TƏŞƏKKÜRLƏR!</h3>
+                <p style="margin-bottom: 0; color: #fff;">Emailiniz uğurla qeydə alındı. Tezliklə görüşəcəyik!</p>
+            </div>
+        </div>
+
+        <div class="did-you-know">
+            <b>💡 Bilirdinizmi?</b>
+            <span id="fact-text">Dünyanın ən qədim universiteti hələ də fəaliyyət göstərən Mərakeşdəki Əl-Karauin universitetidir.</span>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("rnyVJhoi2ws6VD_x1");
+       })();
+
+       function sendMail() {
+            const emailInput = document.getElementById("user_email");
+            const container = document.querySelector(".input-container");
+            const errorText = document.getElementById("error-text");
+            const email = emailInput.value.trim().toLowerCase();
+            
+            // 1. Sərt Email Regex (test@test kimi qısa mailləri rədd edir)
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            
+            // 2. Qara Siyahı (Saxta dominlər)
+            const blacklist = ["test.com", "example.com", "tempmail.com", "mailinator.com", "asdf.com", "123.com"];
+            const domain = email.split('@')[1];
+
+            if (!email || !emailPattern.test(email)) {
+                container.classList.add("error");
+                errorText.innerText = "⚠️ Zəhmət olmasa düzgün bir email formatı daxil edin!";
+                errorText.style.display = "block";
+                return;
+            }
+
+            if (blacklist.includes(domain)) {
+                container.classList.add("error");
+                errorText.innerText = "⚠️ Bu email domeni qəbul edilmir. Zəhmət olmasa real email yazın!";
+                errorText.style.display = "block";
+                return;
+            }
+
+            // Hər şey qaydasındadırsa göndər
+            const btn = document.querySelector(".btn");
+            btn.innerText = "Göndərilir...";
+            btn.disabled = true;
+
+            emailjs.send("service_1olcqbc", "template_i4pi3zn", { to_email: email })
+                .then(function() {
+                    document.getElementById("main-content").style.display = "none";
+                    const successCard = document.getElementById("success-card");
+                    successCard.style.display = "block";
+                    setTimeout(() => {
+                        successCard.style.opacity = "1";
+                        successCard.style.transform = "translateY(0)";
+                    }, 50);
+                }, function(error) {
+                    alert("Xəta: " + JSON.stringify(error));
+                    btn.innerText = "Xəbər ver";
+                    btn.disabled = false;
+                });
+        }
+
+        // Inputa nəsə yazanda qırmızılığın və mesajın itməsi
+        document.getElementById("user_email").addEventListener("input", function() {
+            document.querySelector(".input-container").classList.remove("error");
+            document.getElementById("error-text").style.display = "none";
+        });
+
+        // Background Parallax
+        const bg = document.getElementById('bg-image');
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 60;
+            const y = (window.innerHeight / 2 - e.pageY) / 60;
+            bg.style.transform = `translate(${x}px, ${y}px)`;
+        });
+
+        // "Bilirdinizmi?" bölməsi eyni qalır...
+        const facts = [
+            "Dünyanın ən qədim universiteti hələ də fəaliyyət göstərən Mərakeşdəki Əl-Karauin universitetidir.",
+            "Gələcəkdə ən çox tələb olunan 10 ixtisasdan 7-si birbaşa texnologiya ilə bağlıdır.",
+            "Yumşaq bacarıqlar (Soft skills) iş dünyasında uğur qazanmağın 85%-ni təşkil edir.",
+            "Öyrəndiyiniz yeni bir şeyi başqasına izah etmək həmin məlumatı 90% daha yaxşı yadda saxlamağınızı təmin edir.",
+            "Azərbaycanda hər il minlərlə tələbə ixtisas seçimi zamanı peşəkar dəstəyə ehtiyac duyur."
+        ];
+        let factIndex = 0;
+        setInterval(() => {
+            const factEl = document.getElementById('fact-text');
+            factEl.style.opacity = 0;
+            setTimeout(() => {
+                factIndex = (factIndex + 1) % facts.length;
+                factEl.innerText = facts[factIndex];
+                factEl.style.opacity = 1;
+            }, 500);
+        }, 7000);
+    </script>
+</body>
+</html>
